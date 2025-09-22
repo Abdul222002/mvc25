@@ -6,10 +6,13 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>VIDEO CLUB</h1>
+    <ul>
     <?php
      foreach ($peliculas as $pelicula) {
-                $titulo = ($pelicula->getTitulo()); // escapar espacios
-                echo "<li><a href='index.php?titulo={$titulo}'>{$pelicula->getTitulo()}</a></li>";}
+                $id = ($pelicula->getId());// escapar espacios
+                echo "<li><a href='index.php?id={$id}'>{$pelicula->getTitle()}</a></li>";}
     ?>
+    </ul>
 </body>
 </html>

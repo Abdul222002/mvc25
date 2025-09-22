@@ -7,16 +7,18 @@
 </head>
 <body>
     <?php
-    foreach ($peliculas as $pelicula) {
-                    if ($pelicula->getTitulo() == $_GET["titulo"]) {
-                        echo "<h2>Título: {$pelicula->getTitulo()}</h2>";
-                        echo "<p>Director: {$pelicula->getDirector()}</p>";
-                        echo "<p>Año: {$pelicula->getAnio()}</p>";
-                        echo "<img src='public/img/{$pelicula->getTitulo()}.webp'/>";
-                        echo "<br><a href='index.php'>Volver</a>";
-                        break;
-                    }
-            }
-        ?>
+    $q="SELECT * FROM peliculas WHERE id=".$_GET['id'];
+    $result=$db->query($q);
+
+    if ($result) {
+        $row = mysqli_fetch_array($result);
+        $pelicula = new Pelicula($row['id'], $row['title'], $row['director'], $row['year']);
+        echo "<h2>Título: {$pelicula->getTitle()}</h2>";
+        echo "<p>Director: {$pelicula->getDirector()}</p>";
+        echo "<p>Año: {$pelicula->getYear()}</p>";
+        echo "<img src='public/img/{$pelicula->getTitle()}.webp'/>";
+        echo "<br><a href='index.php'>Volver</a>";
+        }   
+    ?>
 </body>
 </html>

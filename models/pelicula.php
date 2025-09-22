@@ -1,25 +1,30 @@
 <?php
-class Peliculas {
-    private $titulo;
+class Pelicula {
+    private $id;
+    private $title;
     private $director;
-    private $anio;
+    private $year;
 
-    function __construct($titulo, $director, $anio) {
-        $this->titulo = $titulo;
+    function __construct($id,$title, $director, $year) {
+        $this->title = $title;
         $this->director = $director;
-        $this->anio = $anio;
+        $this->year = $year;
+        $this->id = $id;
     }
 
-    function getTitulo() {
-        return $this->titulo;
+    function getTitle() {
+        return $this->title;
     }
 
     function getDirector() {
         return $this->director;
     }
 
-    function getAnio() {
-        return $this->anio;
+    function getYear() {
+        return $this->year;
+    }
+    function getId() {
+        return $this->id;
     }
 }
 
