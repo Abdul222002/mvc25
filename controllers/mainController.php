@@ -1,29 +1,23 @@
 <?php
 
-require_once('models/pelicula.php');
-
 //cargar modelo
+require_once('models/Pelicula.php');
+require_once('models/User.php');
 
-//comprobar variables
+$db = Connection::connect();
 
-//operar
-
-$db=Connection::connect();
-
-$q="SELECT * FROM peliculas";
-$result=$db->query($q);
+session_start();
 
 
-if($result){
-    while($row=mysqli_fetch_array($result)){
-       $peliculas[]= new Pelicula($row['id'],$row['title'], $row['director'], $row['year']);
-    }
+
+if(isset($_GET['c'])){
+    require_once('controllers/'.$_GET['c'].'Controller.php');
+}else{
+    if($_SESSION['user']){
+    require_once('controllers/movieController.php');
+}else{
+    require_once('controllers/loginController.php');
+}
 }
 
 // cargar vista
-if (!isset($_GET["id"])) {
-    require_once 'views/listado.phtml';
-}else{
-    require_once 'views/showmovies.phtml';
-}
-

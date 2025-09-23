@@ -9,9 +9,15 @@
     <h1>VIDEO CLUB</h1>
     <ul>
     <?php
-     foreach ($peliculas as $pelicula) {
+
+    if($_SESSION['user']){
+        echo "<h3>Usuario: {$_SESSION['user']->getUsername()}</h3>";
+        foreach ($peliculas as $pelicula) {
                 $id = ($pelicula->getId());// escapar espacios
                 echo "<li><a href='index.php?id={$id}'>{$pelicula->getTitle()}</a></li>";}
+
+        echo "<br><a href='index.php?c=login&logout=1'>Cerrar sesión</a>";
+    }
     ?>
     </ul>
 </body>
