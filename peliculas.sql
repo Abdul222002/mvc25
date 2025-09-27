@@ -14,7 +14,6 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS pelis;
 USE pelis;
 
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -48,6 +47,30 @@ INSERT INTO `peliculas` (`title`, `director`, `year`, `id`) VALUES
 ('Interstellar', 'Christopher Nolan', '2014', 4),
 ('Pulp Fiction', 'Quentin Tarantino', '1994', 5);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `username` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(100) NOT NULL UNIQUE,
+  `password` VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`username`, `email`, `password`) VALUES
+('user', 'user@example.com', 'user'),
+('abdel22', 'abdel22@example.com', '1234abcd'),
+('manolo98', 'manolo98@example.com', 'qwerty123'),
+('sofia_g', 'sofia.g@example.com', 'passSofi2025'),
+('maria_dev', 'maria.dev@example.com', 'mariA!pwd');
+
 --
 -- Índices para tablas volcadas
 --
@@ -57,6 +80,7 @@ INSERT INTO `peliculas` (`title`, `director`, `year`, `id`) VALUES
 --
 ALTER TABLE `peliculas`
   ADD PRIMARY KEY (`id`);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

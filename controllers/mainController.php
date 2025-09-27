@@ -20,4 +20,4 @@ if(isset($_GET['c'])){
 }
 }
 
-// cargar vista
+// cargar vista 
