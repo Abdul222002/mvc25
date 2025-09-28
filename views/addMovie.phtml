@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <form action="index.php?action=addMovie" method="post">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="director">Director:</label>
+        <input type="text" id="director" name="director" required>
+
+        <label for="year">Año:</label>
+        <input type="number" id="year" name="year" required>
+
+        <label for="image">Imagen:</label>
+        <input type="text" id="image" name="image" required>
+        <br>
+        <input type="submit" value="Agregar Película" name="addMovie2">
+        <a href="index.php">Volver</a>
+    </form>
+</body>
+</html>

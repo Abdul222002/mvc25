@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
     <?php
-    if(!$error){
+    if (!$error) {
         echo "<h2>Título: {$pelicula->getTitle()}</h2>";
         echo "<p>Director: {$pelicula->getDirector()}</p>";
         echo "<p>Año: {$pelicula->getYear()}</p>";
         echo "<img src='public/img/{$pelicula->getTitle()}.webp'/>";
         echo "<br><a href='index.php'>Volver</a>";
-    }else{
+    } else {
         echo '<script>alert("'.$error.'")</script>';
     }
     ?>

@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
     <h1>REGISTRATE</h1>
     <form action="index.php" method="post">
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username">
+        <label for="newUsername">User:</label>
+        <input type="text" id="newUsername" name="newUsername">
         <br>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password">
+        <label for="newEmail">Email:</label>
+        <input type="email" id="newEmail" name="newEmail">
         <br>
-        <label for="password">Confirmar Contraseña:</label>
-        <input type="password" id="password" name="password">
+        <label for="newPassword">New Password:</label>
+        <input type="password" id="newPassword" name="newPassword">
         <br>
-        <input type="submit" value="Registrarse" name="Registrar">
-        </form>
-
-
+        <label for="confirmPassword">Confirm New Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword">
+        <br>
+        <input type="submit" value="Registrarse" name="Registrar"> 
+        <a href='index.php'>Volver</a>
+    </form>
+   
 </body>
 </html>
