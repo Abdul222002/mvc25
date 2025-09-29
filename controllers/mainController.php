@@ -13,7 +13,7 @@ session_start();
 if(isset($_GET['c'])){
     require_once('controllers/'.$_GET['c'].'Controller.php');
 }else{
-    if($_SESSION['user']){
+    if(isset($_SESSION['user'])&& $_SESSION['user']){
     require_once('controllers/movieController.php');
 }else{
     require_once('controllers/loginController.php');
