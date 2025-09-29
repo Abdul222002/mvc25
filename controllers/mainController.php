@@ -9,7 +9,7 @@ $db = Connection::connect();
 session_start();
 
 
-
+// cargar vista 
 if(isset($_GET['c'])){
     require_once('controllers/'.$_GET['c'].'Controller.php');
 }else{
@@ -20,4 +20,3 @@ if(isset($_GET['c'])){
 }
 }
 
-// cargar vista 
