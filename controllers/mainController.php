@@ -3,6 +3,7 @@
 //cargar modelo
 require_once('models/Pelicula.php');
 require_once('models/User.php');
+require_once('models/MovieRepository.php');
 
 $db = Connection::connect();
 

@@ -1,28 +1,25 @@
 <?php
 
-$q="SELECT * FROM peliculas";
-$result=$db->query($q);
+//CARGAR MODELO
+require_once('helpers/FileHelper.php');
 
-if($result){
-    while($row=mysqli_fetch_assoc($result)){
-       $peliculas[]= new Pelicula($row['id'],$row['title'], $row['director'], $row['image'],$row['year']);
-    }
-}
+
 //AÑADIR PELÍCULA
 if(!isset($_GET['id']) && isset($_GET['action']) && $_GET['action']=='addMovie'){
     if(isset($_POST['addMovie2'])){
-        if(isset($_POST['title']) && isset($_POST['director']) && isset($_POST['year']) && isset($_POST['image'])){
-            if(!empty($_POST['title']) && !empty($_POST['director']) && !empty($_POST['year']) && !empty($_POST['image'])){
-                $addMovie="INSERT INTO peliculas (title, director, year, image) VALUES ('".$_POST['title']."','".$_POST['director']."','".$_POST['year']."','".$_POST['image']."')";
-                $resultAdd=$db->query($addMovie);
-                if($resultAdd){
-                    echo "<script>alert('Película añadida con éxito'); window.location.href='index.php';</script>";
-                    exit();
-                } else {
-                    $error = "Error al añadir la película: " . $db->error;
+        if(isset($_POST['title']) && isset($_POST['director']) && isset($_POST['year']) && isset($_FILES['image'])){
+            if(!empty($_POST['title']) && !empty($_POST['director']) && !empty($_POST['year']) && !empty($_FILES['image'])){
+                $fileName= $_FILES['image']['name'];
+
+                if(!FileHelper::fileHandler($_FILES['image']['tmp_name'], 'public/img/'.$fileName)){
+                    // Manejar error de carga de archivo
+                    $fileName='';
                 }
-            } else {
-                $error = "Todos los campos son obligatorios";
+
+                if(MovieRepository::addMovie($_POST['title'], $_POST['director'], $_POST['year'], $fileName)){
+                    header('Location:index.php?add=success');
+                    exit();
+                }     
             }
         }  
     }
@@ -30,19 +27,24 @@ if(!isset($_GET['id']) && isset($_GET['action']) && $_GET['action']=='addMovie')
     exit();
 }
 
+
+// ELIMINAR PELÍCULA
+if(isset($_GET['action']) && $_GET['action']=='delete' && isset($_GET['id'])){
+    if(MovieRepository::deleteMovieById($_GET['id'])){
+        header('Location:index.php?delete=success');
+    } else {
+        header('Location:index.php?delete=error');
+    }
+    exit();
+}
+
 //MOSTRAR VISTAS
 if (!isset($_GET["id"])) {
+    $peliculas = MovieRepository::getAllMovies();
     require_once 'views/listado.phtml';
+    
 } else {
-    $q="SELECT * FROM peliculas WHERE id=".$_GET['id'];
-    $result=$db->query($q);
-    $error=false;
-
-    if($row = mysqli_fetch_assoc($result)){
-        $pelicula = new Pelicula($row['id'] , $row['title'], $row['director'], $row['image'], $row['year']);
-    } else {
-        $error="No se ha encontrado la película.";
-    }
+    $pelicula = MovieRepository::getMovieById($_GET["id"]);
     require_once 'views/showmovies.phtml';
 }
 ?>

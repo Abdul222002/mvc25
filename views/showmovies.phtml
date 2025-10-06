@@ -8,14 +8,14 @@
 </head>
 <body>
     <?php
-    if (!$error) {
+    if ($pelicula !== null) {
         echo "<h2>Título: {$pelicula->getTitle()}</h2>";
         echo "<p>Director: {$pelicula->getDirector()}</p>";
         echo "<p>Año: {$pelicula->getYear()}</p>";
-        echo "<img src='public/img/{$pelicula->getTitle()}.webp'/>";
+        echo "<img src='public/img/{$pelicula->getImage()}'/>";
         echo "<br><a href='index.php'>Volver</a>";
     } else {
-        echo '<script>alert("'.$error.'")</script>';
+        echo '<script>alert("Película no encontrada"); window.location.href="index.php";</script>';
     }
     ?>
 </body>

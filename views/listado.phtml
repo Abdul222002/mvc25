@@ -10,12 +10,31 @@
     <h1>VIDEO CLUB</h1>
     <ul>
     <?php
+    if (isset($_GET['delete'])) {
+        if ($_GET['delete'] == 'success') {
+            echo '<script>alert("Película eliminada con éxito");window.location.href="index.php";</script>';
 
-    if($_SESSION['user']){
+        } elseif ($_GET['delete'] == 'error') {
+            echo '<script>alert("Error al eliminar la película");window.location.href="index.php";</script>';
+        }
+    }
+
+    if (isset($_GET['add']) && $_GET['add'] == 'success') {
+            echo '<script>alert("Película agregada con éxito");window.location.href="index.php";</script>';
+        }
+
+    if (isset($_SESSION['user'])) {
         echo "<h3>Usuario: {$_SESSION['user']->getUsername()}</h3>";
+        
         foreach ($peliculas as $pelicula) {
-                $id = ($pelicula->getId());// escapar espacios
-                echo "<li><a href='index.php?id={$id}'>{$pelicula->getTitle()}</a></li>";}
+            $id = $pelicula->getId();
+            echo "<li>
+                    <a href='index.php?id={$id}'>{$pelicula->getTitle()}</a>
+                    <a href='index.php?c=movie&action=delete&id={$id}'>Delete</a>
+                  </li>";
+        }
+
+        // enlaces fuera del foreach
         echo "<br><a href='index.php?c=movie&action=addMovie'>Agregar película</a>";
         echo "<br><a href='index.php?c=login&logout=1'>Cerrar sesión</a>";
     }
